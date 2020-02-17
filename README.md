@@ -1,4 +1,4 @@
-#Tourin website
+# Touring booking website
 
 ## TO RUN
 
