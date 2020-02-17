@@ -1,0 +1,105 @@
+// it is reusable, part of the reason it is a component 
+
+.btn {
+
+    &, // so that all the properties below for link and visited will be used in the button element <button> 
+    &:link,
+    &:visited{ /* :link is a pseudo class ans it is a state of the botton selector .
+        pseudo class is to style an element on special condition . :visted this is the state when the user has already
+        clicked the botton once before and then sees the botton again.   is when the element */
+        text-transform: uppercase;
+        text-decoration: none;
+        padding:1.5rem 4rem; /* top bottom; left right */
+        border-radius: 10rem;
+        transition: all .2s;
+        position: relative;
+
+            // chabnge for button element
+        border: none;
+        cursor: pointer;
+    }
+
+
+    &--white {
+        background-color: $color-white;
+        color:$color-grey-dark;
+        display: inline-block; /* when you want to give an element a padding . it is treated like a text*/
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color:$color-white;
+        display: inline-block; /* when you want to give an element a padding . it is treated like a text*/
+    }
+
+    &:hover {
+        transform: translateY(-0.3rem); /* move up on hover*/
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);/* offset in the x direction(o) 10px down 20px higher blur */
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);/* it increases the element in the case by 1.5*/
+            opacity:0;
+        }
+    }
+
+    &:active,
+    &:focus { /* when the btn is clicked*/
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 10rem rgba($color-black, 0.2)
+    }
+
+    &::after { /* have an element which is this behind the button. it is treated as a child of the main btn */
+        content:"" ;/* required */
+        display: inline-block; /* required */
+        height:100%; /* this is 100% of the width of the main btn */
+        width:100%;
+        border-radius: 100px;
+        position: absolute;
+        top:0;
+        left:0;
+        z-index: -1;
+        transition: all .4s
+    }
+
+    &--white::after {
+        background-color: $color-white;
+        color: $color-grey-dark;
+    }
+
+    &--green::after {
+        background-color: $color-primary;
+        color: $color-white;
+    }
+
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode:backwards; /* automatimatically apply the styles of the o% before the animation srts */
+    }
+
+}
+
+.btn-text{
+    &:link,
+    &:visited{
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all .2s
+    }
+
+    &:hover{
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+    }
+
+    &:active{
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+}

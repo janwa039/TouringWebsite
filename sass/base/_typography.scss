@@ -1,0 +1,90 @@
+/* setting the size for the font here rather than * because properties of the body are usually inherited */
+body{
+    font-family: "Lato", sans-serif; /* included lato due to the import from google font in the index.html file */
+    font-size: $default-font-size;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $color-grey-dark;
+}
+
+.heading-primary{
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden; /* determines if the backpart of an element 
+    when we transform is visible or hidden by the user */
+    margin-bottom: 6rem;
+
+    &--main{
+        display:block; /* ocuupy the entire width(like 100%) and create line breaks after and before them */
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+    
+        animation-name:  moveInLeft;
+        animation-duration:1s;
+        animation-timing-function: ease-out; /* start the animation fast and slows down towards the end */
+
+        @include respond (phone) {
+            letter-spacing: 1rem;
+            font-size: 5rem;
+
+        }
+    
+    }
+    
+    &--sub{
+        display:block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        animation:  moveInRight 1s ease-out;
+
+        @include respond (phone) {
+            letter-spacing: .5rem;
+
+        }
+        
+    }
+}
+
+.heading-secondary{
+    font-size:3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block; // dpont allow thw border have 100% weight
+    background-image: linear-gradient(to right , $color-primary-light, $color-primary-dark);
+    -webkit-background-clip: text; //
+    color:transparent; // so the background image could show in the text which is ontop;
+    letter-spacing: .2rem;
+    transition: all .2s;
+
+    @include respond (tab-port) {
+        font-size: 3rem;
+
+    }
+
+    @include respond (phone) {
+        font-size: 2.5rem;
+
+    }
+
+    &:hover{
+        transform: skewY(2deg) skewX(15deg) scale(1);
+        text-shadow: .5rem 1rem 2rem rgba($color-black, .2)
+    }
+}
+
+.heading-tertiary { 
+    font-size:$default-font-size;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph{
+    font-size: $default-font-size;
+
+    &:not(:last-child){
+        margin-bottom: 3rem;
+
+    }
+}

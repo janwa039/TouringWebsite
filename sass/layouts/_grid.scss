@@ -1,0 +1,69 @@
+.row {
+    max-width: 114rem; // standard usually 1140px but we need rem  1140px/10px = 1140rem
+    // max width is used instead of width because if we have enough space we use the width= 114rem  but if not it will fill 100% of trhe available space
+    margin: 0 auto; //  auto: browswers will figure out the margin we  want on the left and right side and would be same;
+
+    &:not(:last-child){ // select everything execpt the last child
+        margin-bottom: $gutter-vertical;
+
+        @include respond (tab-port) {
+            margin-bottom: $gutter-vertical-small; 
+     
+        }
+    }
+
+    @include respond (tab-port) {
+        max-width: 50rem; 
+        padding: 0 3rem;
+ 
+    }
+
+    [class^= "col-"] { // selects all element that start in the begining===(^) col- (*)===select all $ ===(end)
+        float: left; // always float the column in the left side
+
+        &:not(:last-child){ // select everything execpt the last child
+            margin-right: $gutter-horizontal;
+
+
+            @include respond (tab-port) {
+                margin-right: 0;  // to make sure they are all 100%
+                margin-bottom: $gutter-vertical-small; 
+         
+             }
+        }
+
+        @include respond (tab-port) {
+           width: 100% !important // to make sure they are all 100%
+    
+        }
+    }
+
+    .col-1-of-2 {
+        width:calc((100% - #{$gutter-horizontal}) / 2);
+
+    
+    }
+
+    .col-1-of-3 {
+        width:calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width:calc(2*((100% - 2 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width:calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+
+    .col-2-of-4 {
+        width:calc(2* ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal} );
+    }
+
+    .col-3-of-4 {
+        width:calc(3* ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal} );
+    }
+
+    @include clearfix;
+}

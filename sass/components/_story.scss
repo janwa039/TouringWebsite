@@ -1,0 +1,95 @@
+.story {
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+    background-color: rgba($color-white, .6);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size:  $default-font-size;
+    transform: skew(-12deg); 
+
+    @include respond (tab-port) {
+
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+
+    }
+
+    @include respond (phone) {
+        transform: skew(0); 
+
+    }
+    
+
+    &__shape {
+        width: 15rem;
+        height:15rem;
+        float: left;
+        border-radius: 50%;
+        // dont mess with a floated element and margin
+        transform: translateX(-3rem) skew(12deg); // skew is done here because if we do it above the transform property all
+        //ready in the __shape will oride when done above so we need to leave it here;
+        position: relative;
+        overflow: hidden; // this was vecause of firefox; to cut the image that surpass the width and height of the container
+
+        @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0))  {
+            shape-outside: circle (50% at 50% 50%); /// to determine where the content flows around the circle
+            //first: radius(50% then radius will be half the height and width of the element 7.rem)
+            // for this to work the elemen t has to be floated and has a width and height;
+             -webkit-shape-outside: circle(50% at 50% 50%);
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            border-radius: none;
+
+    
+        }
+
+        @include respond (phone) {
+            transform: translateX(-3rem) skew(0); // skew is done here because if we do it above the transform property all
+    
+        }
+
+
+    }
+
+    &__img {
+        height: 100%; // this is because the image is wider than it is high;
+        transform: translateX(-4rem) scale(1.4); // to put the image min the shape more in the middle
+        transition: all .5s;
+    }
+
+    &__text {
+        transform: skew(12deg);
+
+        @include respond (phone) {
+            transform: skew(0); // skew is done here because if we do it above the transform property all
+    
+        }
+    }
+
+    &__caption {
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, 20%); // 0 for the animation on hover
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        transition: all .5s;
+        opacity: 0;
+        backface-visibility: hidden;
+    }
+
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%); 
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1); // scale out on hover
+        filter: blur(3px) brightness(80%) // over 100% is brighter
+    }
+}

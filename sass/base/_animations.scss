@@ -1,0 +1,41 @@
+@keyframes moveInLeft {
+    0% {
+        opacity:0;
+        transform: translateX(-10rem) /* we want to animate in the x direction. - because from left to right */
+    }
+    80% {
+        transform: translateX(1rem) /* can have multiple properties  transform: translateX(10px)*/
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0) /* translate 0 because it will be the same as we have as default */
+
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity:0;
+        transform: translateX(10rem) /* we want to animate in the x direction. - because from left to right */
+    }
+    80% {
+        transform: translateX(-1rem)
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0) /* translate 0 because it will be the same as we have as default */
+
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity:0;
+        transform: translateY(3rem) /* we want to animate in the x direction. - because from left to right */
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0) /* translate 0 because it will be the same as we have as default */
+
+    }
+}

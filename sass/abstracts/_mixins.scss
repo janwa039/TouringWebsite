@@ -1,0 +1,78 @@
+@mixin clearfix { //append a pseudo element after the element then it will clear the float
+    &::after {
+        content: "";
+        display:table; //required
+        clear:both;
+
+    }
+}
+
+
+@mixin  absCenter {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%)
+    
+}
+
+//MEDIA QUERY MANAGER
+
+/*
+
+0 - 600PX:          PHONE;
+600 - 900PX:        TABLET POTRAIT
+600 - 900PX:        TABLET LANDSCAPE
+
+1200-1800 IS WHERE OUR NORMAL STYLE APPLY
+1800PX::       BIG DESKTOP
+*/
+
+
+// the mixin can be wwritten this way but we want it to handle all the potential breakpoint
+
+// @mixin respond-phone {
+//     @media (max-width:600px) {
+//         @content; // content allows you to pass a block of code to the mixin
+//     }
+// }
+
+// ORDER: base + typograghy > general layout + grid > page layout > components
+
+/*
+$breakpont argunment choices
+-phone
+-tab-port
+-tab-land
+-big-desktop
+*/
+@mixin respond ($breakpoint){
+    // em and rems in media query are not affected by the root front size. it would only be affected by the font-size coming from 
+    // the user in the browser(which is 16px). 
+    // we usin em which is better for media queries
+    // 1em = 16px;
+    @if $breakpoint == phone {
+         @media only screen and (max-width:37.5em) {// 600px / 16px = 37.5em
+            @content; // content allows you to pass a block of code to the mixin
+        }
+    }
+
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width:56.25em) {
+           @content; // content allows you to pass a block of code to the mixin
+       }
+   }
+
+   @if $breakpoint == tab-land  {
+        @media only screen and (max-width:75em) {
+             @content; // content allows you to pass a block of code to the mixin
+        }
+    }
+
+    @if $breakpoint == big-desktop {
+        @media (min-width:112.5em) {
+            @content; // content allows you to pass a block of code to the mixin
+        }
+    }
+    
+}
